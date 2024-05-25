@@ -9,7 +9,7 @@ class Weapon
 
     attack() 
     {
-        console.log(`${this.name} attacks, with a range of ${this.range}, causing ${this.damage} damage.`);
+        console.log(`${this.name} attacks, with a range of ${this.range}, causing ${this.damage} damage`);
     }
 
     needsAmmunition() 
@@ -26,7 +26,7 @@ class CloseCombatWeapon extends Weapon
 {
     attack() 
     {
-        console.log(`attacking with ${this.name} at a distance of ${this.range}, can cause ${this.damage} damage.`);
+        console.log(`attacking with ${this.name} at a distance of ${this.range}, causing ${this.damage} damage.`);
     }
 
     prepareForAttack() 
@@ -77,3 +77,134 @@ class Firearm extends Weapon
         console.log(`${this.name} is reloaded, Ammo is now full at ${this.magazineSize}`);
     }
 }
+class Bow extends Weapon
+{
+    constructor(name, damage, range, tension, arrows) 
+    {
+        super(name, damage, range);
+        this.tension= tension;
+        this.arrows= arrows;
+    }
+    attack() 
+    {
+        if (this.arrows > 0) 
+        {
+            this.arrows--;
+            console.log(`${this.name} shoots an arrow, causing ${this.damage} damage. Arrows left: ${this.arrows}.`);
+        } 
+        else 
+        {
+            console.log(`${this.name} is out of arrows, needs more`);
+        }
+    }
+
+    needsAmmunition()
+    {
+        return true;
+    }
+
+    prepareForAttack() 
+    {
+        if (this.arrows === 0) 
+        {
+            console.log(`${this.name} needs more arrows`);
+        }
+        else 
+        {
+            console.log(`${this.name} is ready to shoot`);
+        }
+    }
+}
+class SlingShot extends Weapon 
+{
+    constructor(name, damage, range) 
+    {
+        super(name, damage, range);
+        this.stones = 10; 
+    }
+
+    attack() 
+    {
+        if (this.stones > 0) 
+        {
+            this.stones--;
+            console.log(`${this.name} slings a stone, causing ${this.damage} damage. number of stones left is ${this.stones}.`);
+        } 
+        else 
+        {
+            console.log(`${this.name} is out of stones`);
+        }
+    }
+
+    needsAmmunition() 
+    {
+        return true;
+    }
+
+    prepareForAttack() 
+    {
+        if (this.stones === 0) 
+        {
+            console.log(`${this.name} needs more stones`);
+        } 
+        else 
+        {
+            console.log(`${this.name} is ready to sling`);
+        }
+    }
+}
+    class Fighter 
+    {
+    constructor(name, health, weapon) 
+    {
+        this.name = name;
+        this.health = health;
+        this.weapon = weapon;
+    }
+
+    attack(target) 
+    {
+        const damageDealt = this.weapon.damage;
+        target.health -= damageDealt;
+        console.log(`${this.name} attacks ${target.name} for ${damageDealt} damage`);
+    }
+
+    defend(attacker) 
+    {
+        const damageReceived = attacker.weapon.damage;
+        this.health -= damageReceived;
+    
+        console.log(`${this.name} defends himself against ${attacker.name}s attack and loses ${damageReceived} health`);
+
+        if (this.health <= 0)
+        {
+            console.log(`${this.name} is defeated`);
+        }
+    }
+
+    changeWeapon(newWeapon) 
+    {
+        this.weapon = newWeapon;
+        console.log(`${this.name} has changed weapon to ${this.weapon.name}`);
+    }
+
+    potion(healingAmount) 
+    {
+        const healingAmount = 20; 
+        this.health += healingAmount;
+        console.log(`${this.name} drinks a healing potion and gains ${healingAmount} of health`);
+    }
+}
+class Battlefield 
+{
+    constructor(terrain) 
+    {
+        this.terrain = terrain;
+    }
+
+    describe() 
+    {
+        console.log(`The battlefield terrain is ${this.terrain}.`);
+    }
+}
+
