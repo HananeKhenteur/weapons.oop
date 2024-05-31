@@ -1,0 +1,79 @@
+class Weapon
+{
+    constructor(name, damage, range)
+    {
+        this.name = name;
+        this.damage = damage;
+        this.range = range;
+    }
+
+    attack() 
+    {
+        console.log(`${this.name} attacks, with a range of ${this.range}, causing ${this.damage} damage`);
+    }
+
+    needsAmmunition() 
+    {
+        return false;
+    }
+
+    prepareForAttack() 
+    {
+        console.log(`${this.name} is ready to attack`);
+    }
+}
+class Firearm extends Weapon 
+{
+    constructor(name, damage, range, magazineSize) 
+    {
+        super(name, damage, range);
+        this.magazineSize = magazineSize;
+        this.currentAmmo = magazineSize;
+    }
+
+    attack() 
+    {
+        if (this.currentAmmo > 0) 
+        {
+            this.currentAmmo--;
+            console.log(`${this.name} fires a shot, dealing ${this.damage} damage. Ammo left: ${this.currentAmmo}.`);
+        } else {
+            console.log(`${this.name} is out of ammo!`);
+        }
+    }
+
+    needsAmmunition() 
+    {
+        return true;
+    }
+
+    prepareForAttack() 
+    {
+        if (this.currentAmmo === 0) 
+        {
+            this.reload();
+        }
+         else 
+        {
+            console.log(`${this.name} is ready to fire`);
+        }
+    }
+
+    reload() 
+    {
+        this.currentAmmo = this.magazineSize;
+        console.log(`${this.name} is reloaded, Ammo is now full at ${this.magazineSize}`);
+    }
+}
+const testFirearm = () => 
+{
+    let gun = new Firearm('Gun', 25, 50, 6);
+    for (let i = 0; i < 7; i++) {
+        gun.attack(); 
+    }
+    console.log(`Needs ammunition: ${gun.needsAmmunition()}`);
+    gun.prepareForAttack();
+    gun.attack();
+    console.log('');
+}
+testFirearm();
