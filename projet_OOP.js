@@ -24,7 +24,7 @@ class Weapon
 }
 class CloseCombatWeapon extends Weapon 
 {
-    attack() 
+    attack()  
     {
         console.log(`attacking with ${this.name} at a distance of ${this.range}, causing ${this.damage} damage.`);
     }
@@ -153,7 +153,7 @@ class SlingShot extends Weapon
         }
     }
 }
-    class Fighter 
+class Fighter 
     {
     constructor(name, health, weapon) 
     {
