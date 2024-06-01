@@ -1,0 +1,44 @@
+class Weapon
+{
+    constructor(name, damage, range)
+    {
+        this.name = name;
+        this.damage = damage;
+        this.range = range;
+    }
+
+    attack() 
+    {
+        console.log(`${this.name} attacks, with a range of ${this.range}, causing ${this.damage} damage`);
+    }
+
+    needsAmmunition() 
+    {
+        return false;
+    }
+
+    prepareForAttack() 
+    {
+        console.log(`${this.name} is ready to attack`);
+    }
+}
+class CloseCombatWeapon extends Weapon 
+{
+    attack()  
+    {
+        console.log(`attacking with ${this.name} at a distance of ${this.range}, causing ${this.damage} damage.`);
+    }
+
+    prepareForAttack() 
+    {
+        console.log(` sharpen the ${this.name} and attack`);
+    }
+}
+const testCloseCombatWeapon = () => 
+{
+    let Katana = new CloseCombatWeapon('Katana', 15, 1);
+    Katana.attack();
+    Katana.prepareForAttack();
+    console.log('');
+}
+testCloseCombatWeapon();

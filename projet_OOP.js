@@ -114,6 +114,13 @@ class Bow extends Weapon
             console.log(`${this.name} is ready to shoot`);
         }
     }
+
+    reload()
+    {
+        this.arrows = 3; 
+        console.log(`${this.name} is reloaded, arrows are now full at ${this.arrows}`);
+        console.log(`${this.name} is now ready for attack`);
+    }
 }
 class SlingShot extends Weapon 
 {
@@ -151,6 +158,11 @@ class SlingShot extends Weapon
         {
             console.log(`${this.name} is ready to sling`);
         }
+    }
+    reload(stones)
+    {
+        this.stones += stones;
+        console.log(`${this.name} is reloaded with ${stones} stones, total stones now is ${this.stones}`);
     }
 }
 class Fighter 
