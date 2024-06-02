@@ -207,6 +207,18 @@ class Fighter
         console.log(`${this.name} drinks a healing potion and gains ${healingAmount} of health`);
     }
 }
+class Shield {
+    constructor(name, defense) {
+        this.name = name;
+        this.defense = defense;
+    }
+
+    block(damage) {
+        const damageBlocked = Math.min(damage, this.defense);
+        console.log(`The shield blocks ${damageBlocked} damage.`);
+        return damage - damageBlocked;
+    }
+}
 class Battlefield 
 {
     constructor(terrain) 
