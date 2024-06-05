@@ -1,80 +1,9 @@
-class Weapon
-{
-    constructor(name, damage, range)
-    {
-        this.name = name;
-        this.damage = damage;
-        this.range = range;
-    }
-
-    attack()
-    {
-        console.log(`${this.name} attacks, with a range of ${this.range}, causing ${this.damage} damage`);
-    }
-
-    needsAmmunition()
-    {
-        return false;
-    }
-
-    prepareForAttack()
-    {
-        console.log(`${this.name} is ready to attack`);
-    }
-}
-
-class Bow extends Weapon
-{
-    constructor(name, damage, range, tension, arrows)
-    {
-        super(name, damage, range);
-        this.tension = tension;
-        this.arrows = arrows;
-    }
-
-    attack()
-    {
-        if (this.arrows > 0)
-        {
-            this.arrows--;
-            console.log(`${this.name} shoots an arrow, causing ${this.damage} damage. Arrows left: ${this.arrows}`);
-        }
-        else
-        {
-            console.log(`${this.name} is out of arrows, needs more`);
-        }
-    }
-
-    needsAmmunition()
-    {
-        return true;
-    }
-
-    prepareForAttack()
-    {
-        if (this.arrows === 0)
-        {
-            console.log(`${this.name} needs more arrows`);
-            this.reload();
-        }
-        else
-        {
-            console.log(`${this.name} is ready to shoot`);
-        }
-    }
-
-    reload()
-    {
-        this.arrows = 3; 
-        console.log(`${this.name} is reloaded, arrows are now full at ${this.arrows}`);
-        console.log(`${this.name} is ready to attack`);
-    }
-}
-
+const { Bow } = require('./projet_OOP');
 const testBow = () =>
 {
     let bow = new Bow('Bow', 20, 30, 'High', 3); 
-    for (let i = 0; i < 4; i++) { 
+    for (let i = 0; i < 4; i++) 
+    { 
         bow.attack();
 
     }

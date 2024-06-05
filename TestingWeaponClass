@@ -1,28 +1,4 @@
-class Weapon
-{
-    constructor(name, damage, range)
-    {
-        this.name = name;
-        this.damage = damage;
-        this.range = range;
-    }
-
-    attack()
-    {
-        console.log(`${this.name} attacks, with a range of ${this.range}, causing ${this.damage} damage`);
-    }
-
-    needsAmmunition()
-    {
-        return false;
-    }
-
-    prepareForAttack()
-    {
-        console.log(`${this.name} is ready to attack`);
-    }
-
-}
+const { Weapon } = require('./projet_OOP');
 const testWeapon = () =>
 {
 

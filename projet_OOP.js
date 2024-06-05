@@ -31,7 +31,7 @@ class CloseCombatWeapon extends Weapon
 
     prepareForAttack() 
     {
-        console.log(` sharpen ${this.name} and attack`);
+        console.log(` sharpen the ${this.name} and attack`);
     }
 }
 class Firearm extends Weapon 
@@ -79,20 +79,21 @@ class Firearm extends Weapon
 }
 class Bow extends Weapon
 {
-    constructor(name, damage, range, tension, arrows) 
+    constructor(name, damage, range, tension, arrows)
     {
         super(name, damage, range);
-        this.tension= tension;
-        this.arrows= arrows;
+        this.tension = tension;
+        this.arrows = arrows;
     }
-    attack() 
+
+    attack()
     {
-        if (this.arrows > 0) 
+        if (this.arrows > 0)
         {
             this.arrows--;
-            console.log(`${this.name} shoots an arrow, causing ${this.damage} damage. Arrows left: ${this.arrows}.`);
-        } 
-        else 
+            console.log(`${this.name} shoots an arrow, causing ${this.damage} damage. Arrows left: ${this.arrows}`);
+        }
+        else
         {
             console.log(`${this.name} is out of arrows, needs more`);
         }
@@ -103,13 +104,14 @@ class Bow extends Weapon
         return true;
     }
 
-    prepareForAttack() 
+    prepareForAttack()
     {
-        if (this.arrows === 0) 
+        if (this.arrows === 0)
         {
             console.log(`${this.name} needs more arrows`);
+            this.reload();
         }
-        else 
+        else
         {
             console.log(`${this.name} is ready to shoot`);
         }
@@ -119,7 +121,7 @@ class Bow extends Weapon
     {
         this.arrows = 3; 
         console.log(`${this.name} is reloaded, arrows are now full at ${this.arrows}`);
-        console.log(`${this.name} is now ready for attack`);
+        console.log(`${this.name} is ready to attack`);
     }
 }
 class SlingShot extends Weapon 
@@ -127,7 +129,7 @@ class SlingShot extends Weapon
     constructor(name, damage, range) 
     {
         super(name, damage, range);
-        this.stones = 10; 
+        this.stones = 5; 
     }
 
     attack() 
@@ -159,10 +161,10 @@ class SlingShot extends Weapon
             console.log(`${this.name} is ready to sling`);
         }
     }
-    reload(stones)
+    reload (stones)
     {
-        this.stones += stones;
-        console.log(`${this.name} is reloaded with ${stones} stones, total stones now is ${this.stones}`);
+        this.stones+= stones;
+        console.log(`${this.name} reloaded with ${stones} stones, total stones now is: ${this.stones}`);
     }
 }
 class Fighter 
@@ -200,7 +202,7 @@ class Fighter
         console.log(`${this.name} has changed weapon to ${this.weapon.name}`);
     }
 
-    potion(healingAmount) 
+    potion() 
     {
         const healingAmount = 20; 
         this.health += healingAmount;
@@ -231,4 +233,5 @@ class Battlefield
         console.log(`The battlefield terrain is ${this.terrain}.`);
     }
 }
+module.exports = { Weapon, CloseCombatWeapon, Firearm, Bow, SlingShot, Fighter, Shield, Battlefield };
 
