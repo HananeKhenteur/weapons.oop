@@ -1,0 +1,72 @@
+const { Weapon, CloseCombatWeapon, Firearm, Bow, SlingShot, Fighter, Shield, Battlefield } = require('./projet_OOP');
+
+
+const testFighter = () => 
+    {
+    let katana = new Weapon('Katana', 10, 5);
+    let bow = new Bow('Bow', 15, 30, 'High', 3);
+    let gun = new Firearm('Gun', 20, 50, 5);
+    let shield1 = new Shield('Wooden Shield', 5);
+    let shield2 = new Shield('Iron Shield', 10);
+
+    let fighter1 = new Fighter('Ragnar', 100, katana);
+    fighter1.shield = shield1;
+
+    let fighter2 = new Fighter('Lagertha', 100, bow);
+    fighter2.shield = shield2;
+
+    console.log("Initial state:");
+    console.log(`Fighter1: ${fighter1.name}
+          Health: ${fighter1.health}
+          Weapon: ${fighter1.weapon.name}
+          Shield: ${fighter1.shield.name}`);
+    console.log(`Fighter2: ${fighter2.name} 
+          Health: ${fighter2.health}
+          Weapon: ${fighter2.weapon.name} 
+          Shield: ${fighter2.shield.name}`);
+
+    const potion = 50;
+    const rounds = 3;
+
+    for (let round = 1; round <= rounds; round++) 
+        {
+        console.log(`\nRound ${round}`);
+        
+        fighter1.attack(fighter2);
+        let damageAfterBlockF2 = fighter2.shield.block(fighter1.weapon.damage);
+        fighter2.health -= damageAfterBlockF2;
+
+        if (fighter2.health < potion) 
+        {
+            fighter2.potion(20);
+        }
+
+        fighter2.attack(fighter1);
+        let damageAfterBlockF1 = fighter1.shield.block(fighter2.weapon.damage);
+        fighter1.health -= damageAfterBlockF1;
+
+        if (fighter1.health < potion) 
+        {
+            fighter1.potion(20);
+        }
+
+        console.log(`After round ${round}:`);
+        console.log(`Fighter1: ${fighter1.name}, Health: ${fighter1.health}`);
+        console.log(`Fighter2: ${fighter2.name}, Health: ${fighter2.health}`);
+    }
+
+    if (fighter1.health > fighter2.health) 
+    {
+        console.log(`\n${fighter1.name} wins with ${fighter1.health} health remaining`);
+    } 
+    else if (fighter2.health > fighter1.health) 
+    {
+        console.log(`\n${fighter2.name} wins with ${fighter2.health} health remaining`);
+    } 
+    else 
+    {
+        console.log(`\nIt's a draw, Both fighters have ${fighter1.health} health remaining`);
+    }
+}
+
+testFighter();
