@@ -1,9 +1,0 @@
-const { CloseCombatWeapon } = require('./projet_OOP');
-const testCloseCombatWeapon = () => 
-{
-    let Katana = new CloseCombatWeapon('Katana', 15, 1);
-    Katana.attack();
-    Katana.prepareForAttack();
-    console.log('');
-}
-testCloseCombatWeapon();
