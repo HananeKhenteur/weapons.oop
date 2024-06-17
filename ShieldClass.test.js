@@ -15,7 +15,6 @@ describe('Shield', () =>
         const remainingDamage = shield.block(40);
         expect(remainingDamage).toBe(10);
     });
-
     it('should block all damage if defense is higher than damage', () =>
     {
         const shield = new Shield('Diamond Shield', 100);
