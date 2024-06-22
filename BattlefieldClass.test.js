@@ -1,15 +1,15 @@
 const { Battlefield } = require('./projet_OOP');
 
 describe('Battlefield', () => {
-    it('should describe the terrain correctly', () =>
-    {
-        const battlefield = new Battlefield('forest');
-        expect(battlefield.describe()).toBe('The battlefield terrain is forest');
+    it('should create Battlefield instance with correct terrain', () => {
+        const Terrain = new Battlefield('forest');
+        expect(Terrain.terrain).toBe('forest');
     });
 
-    it('should create the class with appropriate properties', () =>
+    it('describe method should return the correct terrain description', () =>
     {
-        const battlefield = new Battlefield('Rocky Mountains');
-        expect(battlefield.terrain).toBe('Rocky Mountains');
+        const battlefield = new Battlefield('desert');
+        const description = battlefield.describe();
+        expect(description).toBe('The battlefield terrain is desert.');
     });
 });

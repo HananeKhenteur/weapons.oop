@@ -11,7 +11,8 @@ describe('Firearm class', () =>
 
     test('should perform attacks and manage ammunition', () =>
     {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++)
+        {
             gun.attack();
         }
         expect(gun.currentAmmo).toBe(0);

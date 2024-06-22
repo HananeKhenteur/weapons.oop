@@ -167,71 +167,90 @@ class SlingShot extends Weapon
         console.log(`${this.name} reloaded with ${stones} stones, total stones now is: ${this.stones}`);
     }
 }
-class Fighter 
-    {
-    constructor(name, health, weapon) 
-    {
+class Fighter {
+    constructor(name, health, weapon, shield = null) {
         this.name = name;
         this.health = health;
         this.weapon = weapon;
+        this.shield = shield;
     }
 
-    attack(target) 
-    {
+    attack(target) {
         const damageDealt = this.weapon.damage;
         target.health -= damageDealt;
         console.log(`${this.name} attacks ${target.name} for ${damageDealt} damage`);
     }
 
-    defend(attacker) 
-    {
+    defend(attacker) {
         const damageReceived = attacker.weapon.damage;
         this.health -= damageReceived;
-    
-        console.log(`${this.name} defends himself against ${attacker.name}s attack and loses ${damageReceived} health`);
 
-        if (this.health <= 0)
-        {
+        console.log(`${this.name} defends against ${attacker.name}'s attack and loses ${damageReceived} health`);
+
+        if (this.health <= 0) {
             console.log(`${this.name} is defeated`);
+            this.health = 0;
+        } else {
+            console.log(`${this.name} has ${this.health} health left.`);
         }
     }
 
-    changeWeapon(newWeapon) 
-    {
+    changeWeapon(newWeapon) {
         this.weapon = newWeapon;
         console.log(`${this.name} has changed weapon to ${this.weapon.name}`);
     }
 
-    potion() 
-    {
-        const healingAmount = 20; 
-        this.health += healingAmount;
-        console.log(`${this.name} drinks a healing potion and gains ${healingAmount} of health`);
+    potion() {
+        const healingAmount = 20;
+        if (this.health <= 5)
+        {
+            this.health += healingAmount;
+            console.log(`${this.name} drinks a healing potion and gains ${healingAmount} health`);
+        } else {
+            console.log(`${this.name} cannot take the potion right now`);
+        }
     }
+
+    equipShield(shield)
+    {
+        this.shield = shield;
+    }
+
+    removeShield()
+    {
+        this.shield = null;
+    }
+
 }
+
 class Shield {
-    constructor(name, defense) {
+    constructor(name, defense)
+    {
         this.name = name;
         this.defense = defense;
     }
 
-    block(damage) {
+    block(damage)
+    {
         const damageBlocked = Math.min(damage, this.defense);
         console.log(`The shield blocks ${damageBlocked} damage.`);
         return damage - damageBlocked;
     }
 }
-class Battlefield 
+
+class Battlefield
 {
-    constructor(terrain) 
+    constructor(terrain)
     {
         this.terrain = terrain;
     }
 
-    describe() 
-    {
-        console.log(`The battlefield terrain is ${this.terrain}.`);
+    describe() {
+        return `The battlefield terrain is ${this.terrain}.`;
     }
 }
+
+module.exports = Battlefield;
+
 module.exports = { Weapon, CloseCombatWeapon, Firearm, Bow, SlingShot, Fighter, Shield, Battlefield };
 
