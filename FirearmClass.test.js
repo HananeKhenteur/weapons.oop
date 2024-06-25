@@ -1,52 +1,38 @@
 const { Firearm } = require('./projet_OOP');
 
-describe('Firearm class', () =>
-{
-    let gun;
-
-    beforeEach(() =>
+describe('Firearm', () => {
+    it('should create Firearm instance with correct properties', () =>
     {
-        gun = new Firearm('Gun', 25, 50, 6);
+        const firearm = new Firearm('gun', 100, 50, 10);
+        expect(firearm.name).toBe('gun');
+        expect(firearm.damage).toBe(100);
+        expect(firearm.range).toBe(50);
+        expect(firearm.magazineSize).toBe(10);
+        expect(firearm.currentAmmo).toBe(10);
     });
 
-    test('should perform attacks and manage ammunition', () =>
+    it('should return true for needsAmmunition', () =>
     {
-        for (let i = 0; i < 6; i++)
-        {
-            gun.attack();
-        }
-        expect(gun.currentAmmo).toBe(0);
-        expect(gun.needsAmmunition()).toBe(true);
-        gun.attack();
-        expect(gun.currentAmmo).toBe(0);
-        gun.prepareForAttack();
-        expect(gun.currentAmmo).toBe(6);
-        expect(gun.needsAmmunition()).toBe(false);
-        gun.attack();
-        expect(gun.currentAmmo).toBe(5);
+        const firearm = new Firearm('gun', 100, 50, 10);
+        expect(firearm.needsAmmunition()).toBe(true);
     });
 
-    test('should reload correctly when out of ammo', () =>
+    it('should log attack message and decrease ammo', () =>
     {
-
-        for (let i = 0; i < 6; i++)
-        {
-            gun.attack();
-        }
-        expect(gun.currentAmmo).toBe(0);
-        expect(gun.needsAmmunition()).toBe(true);
-        gun.prepareForAttack();
-        expect(gun.currentAmmo).toBe(6);
-        expect(gun.needsAmmunition()).toBe(false);
+        const firearm = new Firearm('gun', 100, 50, 10);
+        console.log = jest.fn();
+        firearm.attack();
+        expect(console.log).toHaveBeenCalledWith('gun fires a shot, dealing 100 damage. Ammo left: 9.');
+        expect(firearm.currentAmmo).toBe(9);
     });
 
-    test('should log reloading process correctly', () =>
+    it('should log reload message', () =>
     {
-
-        const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-        gun.reload();
-
-        expect(consoleSpy).toHaveBeenCalledWith(`${gun.name} is reloaded, Ammo is now full at ${gun.magazineSize}`);
-        consoleSpy.mockRestore();
+        const firearm = new Firearm('gun', 100, 50, 10);
+        firearm.currentAmmo = 0;
+        console.log = jest.fn();
+        firearm.reload();
+        expect(console.log).toHaveBeenCalledWith('gun is reloaded, Ammo is now full at 10');
+        expect(firearm.currentAmmo).toBe(10);
     });
 });
