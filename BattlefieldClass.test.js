@@ -1,7 +1,9 @@
 const { Battlefield } = require('./projet_OOP');
 
-describe('Battlefield', () => {
-    it('should create Battlefield instance with correct terrain', () => {
+describe('Battlefield', () =>
+{
+    it('should create Battlefield instance with correct terrain', () =>
+    {
         const Terrain = new Battlefield('forest');
         expect(Terrain.terrain).toBe('forest');
     });
