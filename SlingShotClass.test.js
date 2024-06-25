@@ -1,5 +1,6 @@
 const { SlingShot } = require('./projet_OOP');
 
+
 describe('SlingShot Class', () =>
 {
     let slingShot;
