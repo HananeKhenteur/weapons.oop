@@ -1,4 +1,4 @@
-// tests/BowClass.test.js
+
 const { Bow } = require('./projet_OOP');
 
 describe('Bow', () => {
