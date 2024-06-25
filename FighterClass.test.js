@@ -1,5 +1,6 @@
 const { Fighter, Shield } = require('./projet_OOP');
 
+
 describe('Fighter Class', () =>
 {
     let sword, axe, shield, fighter1, fighter2;
