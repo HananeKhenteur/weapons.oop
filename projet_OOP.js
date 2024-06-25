@@ -77,53 +77,42 @@ class Firearm extends Weapon
         console.log(`${this.name} is reloaded, Ammo is now full at ${this.magazineSize}`);
     }
 }
-class Bow extends Weapon
-{
-    constructor(name, damage, range, tension, arrows)
-    {
+class Bow extends Weapon {
+    constructor(name, damage, range, tension, arrows) {
         super(name, damage, range);
         this.tension = tension;
         this.arrows = arrows;
     }
 
-    attack()
-    {
-        if (this.arrows > 0)
-        {
+    attack() {
+        if (this.arrows > 0) {
             this.arrows--;
             console.log(`${this.name} shoots an arrow, causing ${this.damage} damage. Arrows left: ${this.arrows}`);
-        }
-        else
-        {
+        } else {
             console.log(`${this.name} is out of arrows, needs more`);
         }
     }
 
-    needsAmmunition()
-    {
+    needsAmmunition() {
         return true;
     }
 
-    prepareForAttack()
-    {
-        if (this.arrows === 0)
-        {
+    prepareForAttack() {
+        if (this.arrows === 0) {
             console.log(`${this.name} needs more arrows`);
             this.reload();
-        }
-        else
-        {
+        } else {
             console.log(`${this.name} is ready to shoot`);
         }
     }
 
-    reload()
-    {
-        this.arrows = 3; 
+    reload() {
+        this.arrows = 3;
         console.log(`${this.name} is reloaded, arrows are now full at ${this.arrows}`);
         console.log(`${this.name} is ready to attack`);
     }
 }
+
 class SlingShot extends Weapon 
 {
     constructor(name, damage, range) 
@@ -250,7 +239,4 @@ class Battlefield
     }
 }
 
-module.exports = Battlefield;
-
 module.exports = { Weapon, CloseCombatWeapon, Firearm, Bow, SlingShot, Fighter, Shield, Battlefield };
-
