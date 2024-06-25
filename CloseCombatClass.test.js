@@ -1,5 +1,6 @@
 const { CloseCombatWeapon } = require('./projet_OOP');
 
+
 describe('CloseCombatWeapon Class', () =>
 {
     test('should log attack message with correct damage and range', () =>
