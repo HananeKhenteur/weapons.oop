@@ -262,8 +262,6 @@ describe('Fighter Class', () =>
     });
 });
 
-const { Shield } = require('./projet_OOP');
-
 
 describe('Shield', () =>
 {
